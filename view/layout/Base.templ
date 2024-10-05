@@ -1,0 +1,20 @@
+package layout
+
+templ Base() {
+    <html lang="en">
+        <head>
+            <title>Go-User-Auth!</title>
+            <link rel="icon" type="image/x-icon" href="/public/favicon.ico"/>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/styles.css" />
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+        </head>
+
+        <body class="antialiased">
+            { children... }
+        </body>
+    </html>
+}

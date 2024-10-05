@@ -1,0 +1,28 @@
+package page 
+
+import (
+    "github.com/sysronnie/go-user-auth/view/layout"
+    "context"
+    "github.com/sysronnie/go-user-auth/types"
+) 
+
+func getUser(c context.Context) types.User {
+	user, ok := c.Value("user").(types.User)
+	if !ok {
+		return types.User{} // return empty user if not found
+	}
+	return user
+}
+
+templ Landing(user types.User) {
+	@layout.Base() {
+		<h1>{getUser(ctx).USERNAME} name is here!</h1>
+		<form action="/register" method="POST">
+            <input type="text" name="username" placeholder="Enter a username" />
+            <input type="password" name="password" placeholder="Enter a password" />
+            <button type="submit"> Submit </button>
+
+            
+        </form>
+	}
+}
