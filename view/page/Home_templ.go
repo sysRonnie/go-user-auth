@@ -9,21 +9,12 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"context"
-	"github.com/sysronnie/go-user-auth/types"
-	"github.com/sysronnie/go-user-auth/view/javascript"
 	"github.com/sysronnie/go-user-auth/view/layout"
+
+	"github.com/sysronnie/go-user-auth/view/javascript"
 )
 
-func getUser(c context.Context) types.User {
-	user, ok := c.Value("user").(types.User)
-	if !ok {
-		return types.User{} // return empty user if not found
-	}
-	return user
-}
-
-func Landing(user types.User) templ.Component {
+func Home() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
@@ -53,30 +44,17 @@ func Landing(user types.User) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var3 string
-			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(getUser(ctx).USERNAME)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/page/Landing.templ`, Line: 20, Col: 28}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" name is here!</h1><h1>Register</h1><form id=\"registerForm\"><input type=\"text\" id=\"username\" name=\"username\" placeholder=\"Enter a username\"> <input type=\"text\" id=\"email\" name=\"email\" placeholder=\"Enter an email\"> <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Enter a password\"> <button type=\"submit\">Submit</button></form><h1>Login</h1><form id=\"loginForm\"><input type=\"text\" id=\"loginUsername\" name=\"username\" placeholder=\"Enter a username\"> <input type=\"password\" id=\"loginPassword\" name=\"password\" placeholder=\"Enter a password\"> <button type=\"submit\">Submit</button></form>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = javascript.LandingJavascript().Render(ctx, templ_7745c5c3_Buffer)
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1>Hello World</h1>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return templ_7745c5c3_Err
 		})
 		templ_7745c5c3_Err = layout.Base().Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = javascript.LandingJavascript().Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

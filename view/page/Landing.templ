@@ -4,6 +4,7 @@ import (
     "github.com/sysronnie/go-user-auth/view/layout"
     "context"
     "github.com/sysronnie/go-user-auth/types"
+	"github.com/sysronnie/go-user-auth/view/javascript"
 ) 
 
 func getUser(c context.Context) types.User {
@@ -17,12 +18,21 @@ func getUser(c context.Context) types.User {
 templ Landing(user types.User) {
 	@layout.Base() {
 		<h1>{getUser(ctx).USERNAME} name is here!</h1>
-		<form action="/register" method="POST">
-            <input type="text" name="username" placeholder="Enter a username" />
-            <input type="password" name="password" placeholder="Enter a password" />
-            <button type="submit"> Submit </button>
 
-            
-        </form>
-	}
-}
+		<h1>Register</h1>
+		<form id="registerForm">
+			<input type="text" id="username" name="username" placeholder="Enter a username" />
+			<input type="text" id="email" name="email" placeholder="Enter an email" />
+			<input type="password" id="password" name="password" placeholder="Enter a password" />
+			<button type="submit">Submit</button>
+		</form>
+
+		<h1>Login</h1>
+		<form id="loginForm">
+			<input type="text" id="loginUsername" name="username" placeholder="Enter a username" />
+			<input type="password" id="loginPassword" name="password" placeholder="Enter a password" />
+			<button type="submit">Submit</button>
+		</form>
+		@javascript.LandingJavascript()
+	
+} }

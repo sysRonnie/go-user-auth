@@ -1,0 +1,14 @@
+package page 
+
+import (
+    "github.com/sysronnie/go-user-auth/view/layout"
+   
+	"github.com/sysronnie/go-user-auth/view/javascript"
+)
+
+templ Home() {
+	@layout.Base() {
+		<h1> Hello World</h1>	
+    }
+    @javascript.LandingJavascript()
+}

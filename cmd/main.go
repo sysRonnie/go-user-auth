@@ -9,6 +9,7 @@ import (
 	"github.com/sysronnie/go-user-auth/cmd/api"
 	"github.com/sysronnie/go-user-auth/config"
 	"github.com/sysronnie/go-user-auth/db"
+	"github.com/sysronnie/go-user-auth/service/auth"
 	"github.com/sysronnie/go-user-auth/view/template"
 )
 
@@ -33,6 +34,8 @@ func main() {
 	templateHandler := template.TemplateHandler{DB: db}
 
 	app.GET("/", templateHandler.ShowLandingPage) 
+	app.GET("/home", templateHandler.ShowHomePage, auth.JWTMiddleware("admin"))
+	app.GET("/sandbox", templateHandler.ShowSandboxPage)
 	apiServer := api.NewAPIServer(db)
 
 	// Register API routes to the Echo instance
